@@ -12,7 +12,8 @@ public class RevisionParserTest {
     public void testParse() throws IOException {
         RevisionParser parser = new RevisionParser();
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
-        String timestamp = parser.parse(testDataStream);
-        Assertions.assertEquals("2023-01-30T20:20:13Z", timestamp);
+        Revision revision = parser.parse(testDataStream);
+        String TimeStamp = Revision.getTimeStamp();
+        Assertions.assertEquals("2023-01-30T20:20:13Z", TimeStamp);
     }
 }
