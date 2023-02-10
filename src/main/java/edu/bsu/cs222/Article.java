@@ -16,11 +16,10 @@ public class Article {
         try {
             java.net.URL url = new java.net.URL(urlText);
             URLConnection connection = url.openConnection();
-            connection.setRequestProperty("User-Agent", "Revision Reporter/0.1 (jose.rodriguez@bsu.edu");
+            connection.connect();
             return connection.getInputStream();
         } catch (IOException e) {
             throw new RuntimeException(e);
-
         }
     }
 }
