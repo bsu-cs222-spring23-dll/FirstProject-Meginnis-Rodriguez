@@ -8,11 +8,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class RevisionParser {
-    public Revision parse(InputStream testDataStream) throws IOException {
-       JSONArray result = (JSONArray) JsonPath.read(testDataStream, "$..timestamp");
-       String timeStamp = result.get(0).toString();
-       return new Revision(timeStamp);
-    }
 
     public ArrayList<String> parseAccount(InputStream wikipediaData) throws IOException {
         JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..user");
@@ -24,5 +19,13 @@ public class RevisionParser {
         return parsedAccounts;
     }
 
-
+    public ArrayList<String> parseTimeStamp(InputStream wikipediaData) throws IOException {
+        JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..timestamp");
+        ArrayList<String> parsedTimestamps = new ArrayList<>();
+        for (int i = 0; i < result.toArray().length; i++)
+        {
+            parsedTimestamps.add(result.get(i).toString());
+        }
+        return parsedTimestamps;
+    }
 }
