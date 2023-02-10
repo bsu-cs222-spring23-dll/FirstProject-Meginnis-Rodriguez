@@ -11,31 +11,31 @@ public class RevisionParser {
 
     public ArrayList<String> parseAccount(InputStream wikipediaData) throws IOException {
         JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..user");
-        ArrayList<String> parsedAccounts = new ArrayList<>();
+        ArrayList<String> ListOfParsedAccounts = new ArrayList<>();
         for (int i = 0; i < result.toArray().length; i++)
         {
-            parsedAccounts.add(result.get(i).toString());
+            ListOfParsedAccounts.add(result.get(i).toString());
         }
-        return parsedAccounts;
+        return ListOfParsedAccounts;
     }
 
     public ArrayList<String> parseTimeStamp(InputStream wikipediaData) throws IOException {
         JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..timestamp");
-        ArrayList<String> parsedTimestamps = new ArrayList<>();
+        ArrayList<String> ListOfParsedTimestamps = new ArrayList<>();
         for (int i = 0; i < result.toArray().length; i++)
         {
-            parsedTimestamps.add(result.get(i).toString());
+            ListOfParsedTimestamps.add(result.get(i).toString());
         }
-        return parsedTimestamps;
+        return ListOfParsedTimestamps;
     }
 
     public ArrayList<String> parseRedirect(InputStream wikipediaData) throws IOException {
         JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..redirects");
-        ArrayList<String> parsedRedirects = new ArrayList<>();
+        ArrayList<String> ListOfParsedRedirects = new ArrayList<>();
         for (int i = 0; i < result.toArray().length; i++)
         {
-            parsedRedirects.add(result.get(i).toString());
+            ListOfParsedRedirects.add(result.get(i).toString());
         }
-        return parsedRedirects;
+        return ListOfParsedRedirects;
     }
 }
