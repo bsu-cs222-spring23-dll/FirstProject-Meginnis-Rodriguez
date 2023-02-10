@@ -17,5 +17,11 @@ public class RevisionParserTest {
         Assertions.assertEquals("InternetArchiveBot", OutputtedListOfParsedAccounts.get(0));
     }
 
-
+    @Test
+    public void TimeStampParserTest() throws IOException {
+        RevisionParser parser = new RevisionParser();
+        InputStream wikipediaData = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
+        ArrayList<String> OutputtedListOfParsedTimeStamps = parser.parseTimeStampData(wikipediaData);
+        Assertions.assertEquals("2023-01-30T20:20:13Z", OutputtedListOfParsedTimeStamps.get(0));
+    }
 }
