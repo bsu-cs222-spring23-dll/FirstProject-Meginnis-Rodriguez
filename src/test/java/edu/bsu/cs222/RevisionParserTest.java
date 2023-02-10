@@ -5,15 +5,17 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class RevisionParserTest {
 
     @Test
-    public void testParse() throws IOException {
+    public void AccountParserTest() throws IOException {
         RevisionParser parser = new RevisionParser();
-        InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
-        Revision revision = parser.parse(testDataStream);
-        String TimeStamp = Revision.getTimeStamp();
-        Assertions.assertEquals("2023-01-30T20:20:13Z", TimeStamp);
+        InputStream wikipediaData = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
+        ArrayList<String> OutputtedListOfParsedAccounts = parser.parseAccountData(wikipediaData);
+        Assertions.assertEquals("InternetArchiveBot", OutputtedListOfParsedAccounts.get(0));
     }
+
+
 }
