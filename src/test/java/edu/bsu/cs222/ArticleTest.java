@@ -9,9 +9,9 @@ public class ArticleTest {
 
     @Test
     public void createArticleURL(){
-        final URL url = new URL();
+        final Article article = new Article();
         final String articleTitle = "Frank Zappa";
-        final String searchOutput = url.createArticleURL(articleTitle);
+        final String searchOutput = Article.generateURL(articleTitle);
         Assertions.assertEquals("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Frank+Zappa&rvprop=timestamp|user&rvlimit=27", searchOutput);
     }
 }
