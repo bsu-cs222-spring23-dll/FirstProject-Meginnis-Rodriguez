@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class RevisionParser {
 
-    public ArrayList<String> parseAccount(InputStream wikipediaData) throws IOException {
+    public ArrayList<String> parseAccountData(InputStream wikipediaData) throws IOException {
         JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..user");
         ArrayList<String> ListOfParsedAccounts = new ArrayList<>();
         for (int i = 0; i < result.toArray().length; i++)
@@ -19,7 +19,7 @@ public class RevisionParser {
         return ListOfParsedAccounts;
     }
 
-    public ArrayList<String> parseTimeStamp(InputStream wikipediaData) throws IOException {
+    public ArrayList<String> parseTimeStampData(InputStream wikipediaData) throws IOException {
         JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..timestamp");
         ArrayList<String> ListOfParsedTimestamps = new ArrayList<>();
         for (int i = 0; i < result.toArray().length; i++)
@@ -29,7 +29,7 @@ public class RevisionParser {
         return ListOfParsedTimestamps;
     }
 
-    public ArrayList<String> parseRedirect(InputStream wikipediaData) throws IOException {
+    public ArrayList<String> parseRedirectData(InputStream wikipediaData) throws IOException {
         JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..redirects");
         ArrayList<String> ListOfParsedRedirects = new ArrayList<>();
         for (int i = 0; i < result.toArray().length; i++)
