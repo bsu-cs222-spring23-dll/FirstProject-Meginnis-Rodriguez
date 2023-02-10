@@ -24,4 +24,6 @@ public class RevisionParserTest {
         ArrayList<String> OutputtedListOfParsedTimeStamps = parser.parseTimeStampData(wikipediaData);
         Assertions.assertEquals("2023-01-30T20:20:13Z", OutputtedListOfParsedTimeStamps.get(0));
     }
+
+
 }
