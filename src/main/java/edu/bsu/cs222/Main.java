@@ -20,6 +20,7 @@ public class Main {
         String requestedArticle;
 
         Scanner keyboard = new Scanner(System.in);
+        System.out.println("What article would you like to search for?");
         requestedArticle = keyboard.nextLine();
         return requestedArticle;
     }

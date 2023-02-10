@@ -9,14 +9,15 @@ import java.nio.charset.Charset;
 public class Article {
     public static String generateURL(String articleName) {
         articleName = URLEncoder.encode(articleName, Charset.defaultCharset());
-        return String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=27&redirects");
+        return String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=27&redirects", articleName);
     }
 
     public InputStream connectURL(String urlText) {
         try {
-            java.net.URL url = new java.net.URL(urlText);
-            URLConnection connection = url.openConnection();
-            connection.connect();
+            java.net.URL articleURL = new java.net.URL(urlText);
+            URLConnection connection = articleURL.openConnection();
+            connection.setRequestProperty("User-Agent",
+                    "Revision Reporter/0.1 (bgmeginnis@bsu.edu)");
             return connection.getInputStream();
         } catch (IOException e) {
             throw new RuntimeException(e);

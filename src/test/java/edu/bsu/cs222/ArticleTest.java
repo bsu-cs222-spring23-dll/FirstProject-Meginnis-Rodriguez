@@ -11,7 +11,7 @@ public class ArticleTest {
     public void createArticleURL(){
         final Article article = new Article();
         final String articleTitle = "Frank Zappa";
-        final String searchOutput = Article.generateURL(articleTitle);
-        Assertions.assertEquals("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Frank+Zappa&rvprop=timestamp|user&rvlimit=27", searchOutput);
+        final String searchOutput = article.generateURL(articleTitle);
+        Assertions.assertEquals("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=Frank+Zappa&rvprop=timestamp|user&rvlimit=27&redirects", searchOutput);
     }
 }
