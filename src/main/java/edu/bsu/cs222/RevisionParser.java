@@ -28,4 +28,14 @@ public class RevisionParser {
         }
         return parsedTimestamps;
     }
+
+    public ArrayList<String> parseRedirect(InputStream wikipediaData) throws IOException {
+        JSONArray result = (JSONArray) JsonPath.read(wikipediaData, "$..redirects");
+        ArrayList<String> parsedRedirects = new ArrayList<>();
+        for (int i = 0; i < result.toArray().length; i++)
+        {
+            parsedRedirects.add(result.get(i).toString());
+        }
+        return parsedRedirects;
+    }
 }
