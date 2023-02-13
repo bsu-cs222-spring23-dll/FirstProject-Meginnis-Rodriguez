@@ -1,7 +1,6 @@
 package edu.bsu.cs222;
 
 import java.io.*;
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,16 +12,16 @@ public class LearningTest {
         File file = new File("src/main/java/edu/bsu/cs222/Elizabeth_IIExampleFile");
         FileReader fileReader = new FileReader(file);
 
-        String fileInString = "";
+        StringBuilder fileInString = new StringBuilder();
         int character;
 
         while((character = fileReader.read()) != -1) {
-            fileInString = fileInString + (char)character;
+            fileInString.append((char) character);
         }
 
         System.out.println(fileInString);
 
-        boolean result = fileInString.contains("Neveselbert");
+        boolean result = fileInString.toString().contains("Neveselbert");
         Assertions.assertTrue(result);
     }
 }
