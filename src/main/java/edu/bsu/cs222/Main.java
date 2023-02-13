@@ -27,16 +27,14 @@ public class Main {
 
     private static InputStream articleAccounts(String requestedArticle) {
         Article userArticle = new Article();
-        String encodedAccountURL = userArticle.generateURL(requestedArticle);
-        InputStream accountInputStream = userArticle.connectURL(encodedAccountURL);
-        return accountInputStream;
+        String encodedAccountURL = Article.generateURL(requestedArticle);
+        return userArticle.connectURL(encodedAccountURL);
     }
 
     private static InputStream articleTimeStamps(String requestedArticle) {
         Article userArticle = new Article();
-        String encodedTimeStampURL = userArticle.generateURL(requestedArticle);
-        InputStream timeStampInputStream = userArticle.connectURL(encodedTimeStampURL);
-        return timeStampInputStream;
+        String encodedTimeStampURL = Article.generateURL(requestedArticle);
+        return userArticle.connectURL(encodedTimeStampURL);
     }
 
     private static void ArticleAccountsPrepForFormat(InputStream accounts, InputStream timeStamps) throws IOException {

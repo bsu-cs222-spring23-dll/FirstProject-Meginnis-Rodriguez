@@ -12,7 +12,6 @@ public class ArticleRequestTest {
         String output = articleRequest.articleSearch(userInput);
         Assertions.assertEquals(userInput, output);
     }
-
     @Test
     public void NoInputArticleRequestedTest() {
         ArticleRequest articleRequest = new ArticleRequest();
