@@ -13,7 +13,7 @@ public class Main {
         userRequestedArticle = userPrompt();
         accounts = articleAccounts(userRequestedArticle);
         timeStamps = articleTimeStamps(userRequestedArticle);
-        ArticleAccountsPrepForFormat(accounts, timeStamps);
+        articleAccountsPrepForFormat(accounts, timeStamps);
     }
 
     private static String userPrompt() {
@@ -27,17 +27,17 @@ public class Main {
 
     private static InputStream articleAccounts(String requestedArticle) {
         Article userArticle = new Article();
-        String encodedAccountURL = Article.generateURL(requestedArticle);
-        return userArticle.connectURL(encodedAccountURL);
+        String encodedAccountURL = Article.generateArticleURL(requestedArticle);
+        return userArticle.connectArticleURL(encodedAccountURL);
     }
 
     private static InputStream articleTimeStamps(String requestedArticle) {
         Article userArticle = new Article();
-        String encodedTimeStampURL = Article.generateURL(requestedArticle);
-        return userArticle.connectURL(encodedTimeStampURL);
+        String encodedTimeStampURL = Article.generateArticleURL(requestedArticle);
+        return userArticle.connectArticleURL(encodedTimeStampURL);
     }
 
-    private static void ArticleAccountsPrepForFormat(InputStream accounts, InputStream timeStamps) throws IOException {
+    private static void articleAccountsPrepForFormat(InputStream accounts, InputStream timeStamps) throws IOException {
         RevisionFormatter formatter = new RevisionFormatter();
         ArrayList<String> accountsList = formatter.parseAccountData(accounts);
         ArrayList<String> timestampsList = formatter.parseTimeStampData(timeStamps);

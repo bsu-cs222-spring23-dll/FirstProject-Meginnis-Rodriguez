@@ -7,12 +7,12 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
 public class Article {
-    public static String generateURL(String articleName) {
+    public static String generateArticleURL(String articleName) {
         articleName = URLEncoder.encode(articleName, Charset.defaultCharset());
         return String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=27&redirects", articleName);
     }
 
-    public InputStream connectURL(String urlText) {
+    public InputStream connectArticleURL(String urlText) {
         try {
             java.net.URL articleURL = new java.net.URL(urlText);
             URLConnection connection = articleURL.openConnection();
