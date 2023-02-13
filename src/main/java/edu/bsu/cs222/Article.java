@@ -16,7 +16,7 @@ public class Article {
         try {
             java.net.URL articleURL = new java.net.URL(urlText);
             URLConnection connection = articleURL.openConnection();
-            connection.setRequestProperty("User-Agent",
+            connection.setRequestProperty("Beethoven Meginnis",
                     "Revision Reporter/0.1 (bgmeginnis@bsu.edu)");
             return connection.getInputStream();
         } catch (IOException e) {
