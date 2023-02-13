@@ -9,7 +9,7 @@ public class LearningTest {
     //adapted from https://www.geeksforgeeks.org/different-ways-reading-text-file-java/
     @Test
     public void testingFileForAuthorName() {
-        File file = new File("src/main/java/edu/bsu/cs222/Elizabeth_IIExampleFile");
+        File file = new File("src/test/resources/Elizabeth_IIExampleFile");
 
         try (FileReader fileReader = new FileReader(file)) {
 
