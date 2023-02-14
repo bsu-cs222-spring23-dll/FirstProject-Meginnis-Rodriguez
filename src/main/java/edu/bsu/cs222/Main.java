@@ -17,11 +17,16 @@ public class Main {
     }
 
     private static String userPrompt() {
+        //String requestedArticle;
+        // keyboard = new Scanner(System.in);
+        //System.out.println("What article would you like to search for?");
+        //requestedArticle = keyboard.nextLine();
+        //return requestedArticle;
         String requestedArticle;
-
         Scanner keyboard = new Scanner(System.in);
         System.out.println("What article would you like to search for?");
         requestedArticle = keyboard.nextLine();
+        requestedArticle = ArticleRequest.articleSearch(requestedArticle); // validate the user input using ArticleRequest
         return requestedArticle;
     }
 
