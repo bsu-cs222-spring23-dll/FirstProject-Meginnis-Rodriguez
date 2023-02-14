@@ -41,7 +41,12 @@ public class Main {
         RevisionFormatter formatter = new RevisionFormatter();
         ArrayList<String> accountsList = formatter.parseAccountData(accounts);
         ArrayList<String> timestampsList = formatter.parseTimeStampData(timeStamps);
-        System.out.println(formatter.revisionFormat(accountsList, timestampsList));
+        ArrayList<String> finalList;
+        finalList = formatter.revisionFormat(accountsList, timestampsList);
+        for (String s : finalList) {
+            System.out.println(s);
+        }
+
     }
 
 }
