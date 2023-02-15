@@ -7,16 +7,14 @@ public class ArticleRequestTest {
 
     @Test
     public void InputtedArticleRequestTest() {
-        ArticleRequest articleRequest = new ArticleRequest();
         String userInput = "Frank Zappa";
-        String output = articleRequest.articleSearch(userInput);
+        String output = ArticleRequest.articleSearch(userInput);
         Assertions.assertEquals(userInput, output);
     }
     @Test
     public void NoInputArticleRequestedTest() {
-        ArticleRequest articleRequest = new ArticleRequest();
         String userInput = "";
-        String output = articleRequest.articleSearch(userInput);
+        String output = ArticleRequest.articleSearch(userInput);
         Assertions.assertEquals(userInput, output);
     }
 }

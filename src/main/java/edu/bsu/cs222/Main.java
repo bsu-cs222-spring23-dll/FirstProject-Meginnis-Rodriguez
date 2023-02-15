@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        RevisionFormatter formatter = new RevisionFormatter();
         try {
             String userRequestedArticle;
             InputStream accounts;
