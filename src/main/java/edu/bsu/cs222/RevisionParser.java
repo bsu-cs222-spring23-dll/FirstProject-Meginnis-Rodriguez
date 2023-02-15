@@ -38,4 +38,31 @@ public class RevisionParser {
         }
         return ListOfParsedRedirects;
     }
+
+    public boolean detectNoPageFound(InputStream wikipediaData) throws IOException {
+        JSONArray result = JsonPath.read(wikipediaData, "$..missing");
+        return result.size() != 0;
+    }
+
+    public void parseNoPageFound(InputStream wikipediaData) throws IOException {
+        if (detectNoPageFound(wikipediaData)) {
+            System.err.println("Page does not exist");
+            System.exit(0);
+        }
+    }
+
+    public boolean detectRedirect(InputStream wikipediaData) throws IOException {
+        JSONArray result = JsonPath.read(wikipediaData, "$..to");
+        return result.size() != 0;
+    }
+    public ArrayList<String> parseRedirect(InputStream wikipediaData) throws IOException {
+        JSONArray result = JsonPath.read(wikipediaData, "$..to");
+        ArrayList<String> parsedRedirect = new ArrayList<>();
+        if (detectRedirect(wikipediaData)) {
+            parsedRedirect.add(result.get(0).toString());
+            return parsedRedirect;
+        } return null;
+    }
+
+
 }

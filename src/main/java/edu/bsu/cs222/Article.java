@@ -23,4 +23,6 @@ public class Article {
             throw new RuntimeException(e);
         }
     }
+
+
 }

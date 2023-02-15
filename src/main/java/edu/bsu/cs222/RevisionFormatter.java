@@ -1,5 +1,7 @@
 package edu.bsu.cs222;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class RevisionFormatter extends RevisionParser{
@@ -8,5 +10,10 @@ public class RevisionFormatter extends RevisionParser{
         for (int object = 0; object < parsedUserList.size(); object++){
             revisionList.add(parsedTimeStampList.get(object) + " " + parsedUserList.get(object) + "\n");
         } return revisionList;
+    }
+
+    public String redirectFormat(InputStream wikipediaData) throws IOException {
+        ArrayList<String> redirect = parseRedirect(wikipediaData);
+        return "Redirected to " + redirect.get(0);
     }
 }

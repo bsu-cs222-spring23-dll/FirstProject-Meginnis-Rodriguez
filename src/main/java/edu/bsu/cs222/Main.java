@@ -7,21 +7,22 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String userRequestedArticle;
-        InputStream accounts;
-        InputStream timeStamps;
-        userRequestedArticle = userPrompt();
-        accounts = articleAccounts(userRequestedArticle);
-        timeStamps = articleTimeStamps(userRequestedArticle);
-        articleAccountsPrepForFormat(accounts, timeStamps);
-    }
+        RevisionFormatter formatter = new RevisionFormatter();
+        try {
+            String userRequestedArticle;
+            InputStream accounts;
+            InputStream timeStamps;
 
-    private static String userPrompt() {
-        //String requestedArticle;
-        // keyboard = new Scanner(System.in);
-        //System.out.println("What article would you like to search for?");
-        //requestedArticle = keyboard.nextLine();
-        //return requestedArticle;
+            userRequestedArticle = userPrompt();
+            accounts = articleAccounts(userRequestedArticle);
+            timeStamps = articleTimeStamps(userRequestedArticle);
+            articleRevisionsPrepForFormat(accounts, timeStamps);
+        } catch (RuntimeException networkError) {
+            System.err.println("Network Error:" + " " + networkError.getMessage());
+            System.exit(0);
+        }
+    }
+    private static String userPrompt () {
         String requestedArticle;
         Scanner keyboard = new Scanner(System.in);
         System.out.println("What article would you like to search for?");
@@ -30,19 +31,19 @@ public class Main {
         return requestedArticle;
     }
 
-    private static InputStream articleAccounts(String requestedArticle) {
+    private static InputStream articleAccounts (String requestedArticle){
         Article userArticle = new Article();
         String encodedAccountURL = Article.generateArticleURL(requestedArticle);
         return userArticle.connectArticleURL(encodedAccountURL);
     }
 
-    private static InputStream articleTimeStamps(String requestedArticle) {
+     private static InputStream articleTimeStamps (String requestedArticle){
         Article userArticle = new Article();
         String encodedTimeStampURL = Article.generateArticleURL(requestedArticle);
         return userArticle.connectArticleURL(encodedTimeStampURL);
     }
 
-    private static void articleAccountsPrepForFormat(InputStream accounts, InputStream timeStamps) throws IOException {
+    private static void articleRevisionsPrepForFormat (InputStream accounts, InputStream timeStamps) throws IOException {
         RevisionFormatter formatter = new RevisionFormatter();
         ArrayList<String> accountsList = formatter.parseAccountData(accounts);
         ArrayList<String> timestampsList = formatter.parseTimeStampData(timeStamps);
