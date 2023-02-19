@@ -3,6 +3,11 @@ package edu.bsu.cs222;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class ArticleRequestTest {
 
     @Test
@@ -11,10 +16,15 @@ public class ArticleRequestTest {
         String output = ArticleRequest.articleSearch(userInput);
         Assertions.assertEquals(userInput, output);
     }
+
     @Test
-    public void NoInputArticleRequestedTest() {
+    public void ErrorTest() {
         String userInput = "";
-        String output = ArticleRequest.articleSearch(userInput);
-        Assertions.assertEquals(userInput, output);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ArticleRequest.articleSearch(userInput);
+        });
+        String expectedMessage = "No page requested";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }

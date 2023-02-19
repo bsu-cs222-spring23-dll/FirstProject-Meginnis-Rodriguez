@@ -16,6 +16,9 @@ public class Main {
             accounts = articleAccounts(userRequestedArticle);
             timeStamps = articleTimeStamps(userRequestedArticle);
             articleRevisionsPrepForFormat(accounts, timeStamps);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
         } catch (RuntimeException networkError) {
             System.err.println("Network Error:" + " " + networkError.getMessage());
             System.exit(0);
