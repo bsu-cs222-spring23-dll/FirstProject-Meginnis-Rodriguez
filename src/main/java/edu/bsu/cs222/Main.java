@@ -19,7 +19,6 @@ public class Main {
             for (String s : finalList) {
                 System.out.println(s);
             }
-
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             System.exit(0);
@@ -60,9 +59,6 @@ public class Main {
         ArrayList<String> timestampsList = formatter.parseTimeStampData(timeStamps);
         ArrayList<String> finalList;
         finalList = formatter.revisionFormat(accountsList, timestampsList);
-        //for (String s : finalList) {
-        //    System.out.println(s);
-        //}
         return finalList;
     }
 }
