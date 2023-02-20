@@ -18,7 +18,7 @@ public class ArticleRequestTest {
     }
 
     @Test
-    public void ErrorTest() {
+    public void NoPageRequestedTest() {
         String userInput = "";
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             ArticleRequest.articleSearch(userInput);

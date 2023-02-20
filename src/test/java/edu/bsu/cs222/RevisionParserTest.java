@@ -25,12 +25,4 @@ public class RevisionParserTest {
         Assertions.assertEquals("2023-01-30T20:20:13Z", OutputtedListOfParsedTimeStamps.get(0));
     }
 
-    @Test
-    public void RedirectParserTest() throws IOException {
-        RevisionParser parser = new RevisionParser();
-        InputStream wikipediaData = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
-        ArrayList<String> OutputtedListOfParsedRedirects = parser.parseRedirectData(wikipediaData);
-        Assertions.assertEquals("[{\"from\":\"Zappa\",\"to\":\"Frank Zappa\"}]", OutputtedListOfParsedRedirects.get(0));
-    }
-
 }

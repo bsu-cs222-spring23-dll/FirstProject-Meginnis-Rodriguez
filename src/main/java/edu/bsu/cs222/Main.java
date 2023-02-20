@@ -15,37 +15,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class Main extends Application {
     static Scanner keyboard = new Scanner(System.in);
     private TextField urlField;
     private TextArea revisionsArea;
 
-    public static void main(String[] args) throws IOException {
-                //launch(args);
-                try {
-                    String userRequestedArticle = userPrompt();
-                    InputStream accounts = articleAccounts(userRequestedArticle);
-                    InputStream timeStamps = articleTimeStamps(userRequestedArticle);
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-                    ArrayList<String> finalList = articleRevisionsPrepForFormat(accounts, timeStamps);
-                    if (finalList.isEmpty()) {
-                        throw new RuntimeException("No page found.");
-                    }
-                    for (String s : finalList) {
-                        System.out.println(s);
-                    }
-                } catch (IllegalArgumentException e) {
-                    System.err.println(e.getMessage());
-                    System.exit(0);
-                } catch (RuntimeException networkError) {
-                    if (networkError.getMessage().equals("No page found.")) {
-                        System.err.println("No page found.");
-                    } else {
-                        System.err.println("Network Error: " + networkError.getMessage());
-                    }
-                    System.exit(0);
-                }
-            }
     @Override
     public void start(Stage primaryStage) {
         Label urlLabel = new Label("What article would you like to search for?:");
@@ -90,10 +70,33 @@ public class Main extends Application {
             }
         }
     }
+    private static void oldConsoleMethod() throws IOException {
+        try {
+            String userRequestedArticle = userPrompt();
+            InputStream accounts = articleAccounts(userRequestedArticle);
+            InputStream timeStamps = articleTimeStamps(userRequestedArticle);
+            ArrayList<String> finalList = articleRevisionsPrepForFormat(accounts, timeStamps);
+            if (finalList.isEmpty()) {
+                throw new RuntimeException("No page found.");
+            }
+            for (String s : finalList) {
+                System.out.println(s);
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            System.exit(0);
+        } catch (RuntimeException networkError) {
+            if (networkError.getMessage().equals("No page found.")) {
+                System.err.println("No page found.");
+            } else {
+                System.err.println("Network Error: " + networkError.getMessage());
+            }
+            System.exit(0);
+        }
+    }
 
     private static String userPrompt () {
         String requestedArticle;
-        //Scanner keyboard = new Scanner(System.in);
         System.out.println("What article would you like to search for?");
         requestedArticle = keyboard.nextLine();
         requestedArticle = ArticleRequest.articleSearch(requestedArticle); // validate the user input using ArticleRequest
