@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.bsu.cs222.LearningTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-13T16:29:17" hostname="MACBOOKPRO15" time="0.022">
-  <properties/>
-  <testcase name="testingFileForAuthorName()" classname="edu.bsu.cs222.LearningTest" time="0.022"/>
-  <system-out><![CDATA[{"continue":{"rvcontinue":"20230205180501|1137636205","continue":"||"},"query":{"normalized":[{"from":"Elizabeth_II","to":"Elizabeth II"}],"pages":{"12153654":{"pageid":12153654,"ns":0,"title":"Elizabeth II","revisions":[{"user":"Neveselbert","timestamp":"2023-02-06T00:17:26Z"},{"user":"Neveselbert","timestamp":"2023-02-05T21:15:55Z"},{"user":"Neveselbert (mobile)","timestamp":"2023-02-05T21:14:06Z"},{"user":"Neveselbert (mobile)","timestamp":"2023-02-05T21:12:23Z"}]}}}}
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
