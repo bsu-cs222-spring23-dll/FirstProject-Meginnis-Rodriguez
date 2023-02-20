@@ -70,6 +70,7 @@ public class Main extends Application {
             }
         }
     }
+
     private static void oldConsoleMethod() throws IOException {
         try {
             String userRequestedArticle = userPrompt();
