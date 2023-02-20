@@ -28,7 +28,7 @@ public class RevisionParser {
         }
         return ListOfParsedTimestamps;
     }
-
+/***
     public ArrayList<String> parseRedirectData(InputStream wikipediaData) throws IOException {
         JSONArray result = JsonPath.read(wikipediaData, "$..redirects");
         ArrayList<String> ListOfParsedRedirects = new ArrayList<>();
@@ -38,7 +38,7 @@ public class RevisionParser {
         }
         return ListOfParsedRedirects;
     }
-
+***/
     public boolean detectNoPageFound(InputStream wikipediaData) throws IOException {
         JSONArray result = JsonPath.read(wikipediaData, "$..missing");
         return result.size() != 0;

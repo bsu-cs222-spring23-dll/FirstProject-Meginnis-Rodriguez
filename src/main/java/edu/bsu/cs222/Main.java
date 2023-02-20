@@ -6,23 +6,32 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, RuntimeException {
         try {
-            String userRequestedArticle;
-            InputStream accounts;
-            InputStream timeStamps;
+            String userRequestedArticle = userPrompt();
+            InputStream accounts = articleAccounts(userRequestedArticle);
+            InputStream timeStamps = articleTimeStamps(userRequestedArticle);
 
-            userRequestedArticle = userPrompt();
-            accounts = articleAccounts(userRequestedArticle);
-            timeStamps = articleTimeStamps(userRequestedArticle);
-            articleRevisionsPrepForFormat(accounts, timeStamps);
+            ArrayList<String> finalList = articleRevisionsPrepForFormat(accounts, timeStamps);
+            if (finalList.isEmpty()) {
+                throw new RuntimeException("No page found.");
+            }
+            for (String s : finalList) {
+                System.out.println(s);
+            }
+
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             System.exit(0);
         } catch (RuntimeException networkError) {
-            System.err.println("Network Error:" + " " + networkError.getMessage());
+            if (networkError.getMessage().equals("No page found.")) {
+                System.err.println("No page found.");
+            } else {
+                System.err.println("Network Error: " + networkError.getMessage());
+            }
             System.exit(0);
         }
+
     }
     private static String userPrompt () {
         String requestedArticle;
@@ -45,16 +54,15 @@ public class Main {
         return userArticle.connectArticleURL(encodedTimeStampURL);
     }
 
-    private static void articleRevisionsPrepForFormat (InputStream accounts, InputStream timeStamps) throws IOException {
+    private static ArrayList<String> articleRevisionsPrepForFormat (InputStream accounts, InputStream timeStamps) throws IOException {
         RevisionFormatter formatter = new RevisionFormatter();
         ArrayList<String> accountsList = formatter.parseAccountData(accounts);
         ArrayList<String> timestampsList = formatter.parseTimeStampData(timeStamps);
         ArrayList<String> finalList;
         finalList = formatter.revisionFormat(accountsList, timestampsList);
-        for (String s : finalList) {
-            System.out.println(s);
-        }
-
+        //for (String s : finalList) {
+        //    System.out.println(s);
+        //}
+        return finalList;
     }
-
 }
